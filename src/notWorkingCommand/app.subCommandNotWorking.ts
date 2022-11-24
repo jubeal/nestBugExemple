@@ -1,5 +1,5 @@
 import { SubCommand, CommandRunner, Option } from 'nest-commander';
-import { AppService } from './app.service';
+import { AppService } from '../services/app.service';
 
 interface AppCommandOptions {
   message: string;

@@ -1,15 +1,15 @@
 import { SubCommand, CommandRunner, Option } from 'nest-commander';
-import { AppService } from './app.service';
+import { AppService } from '../services/app.service';
 
 interface AppCommandOptions {
-  messageBlue: string;
+  message: string;
 }
 
 @SubCommand({
-  name: 'blue',
-  description: 'Tells you what you need to hear but in blue',
+  name: 'yellow',
+  description: 'Tells you what you need to hear but in yellow',
 })
-export class AppSubCommand extends CommandRunner {
+export class AppWorkingSubCommandYellow extends CommandRunner {
   constructor(private readonly appService: AppService) {
     super();
   }
@@ -18,15 +18,15 @@ export class AppSubCommand extends CommandRunner {
     _PassedParams: string[],
     options: AppCommandOptions,
   ): Promise<void> {
-    const { messageBlue } = options;
+    const { message } = options;
 
     console.log('SubCommand');
 
-    console.log('\x1b[36m%s\x1b[0m', this.appService.getMessage(messageBlue));
+    console.log('\x1b[33m%s\x1b[0m', this.appService.getMessage(message));
   }
 
   @Option({
-    flags: '-b --message-blue [string]',
+    flags: '-m --message [string]',
     description: 'What you need to hear',
     required: false,
   })

@@ -1,18 +1,15 @@
-import { Command, CommandRunner, Option } from 'nest-commander';
-import { AppService } from './app.service';
-import { AppSubCommand } from './app.subCommand';
-import { AppSubCommandNotWorking } from './app.subCommandNotWorking';
+import { SubCommand, CommandRunner, Option } from 'nest-commander';
+import { AppService } from '../services/app.service';
 
 interface AppCommandOptions {
   message: string;
 }
 
-@Command({
-  name: 'say',
-  subCommands: [AppSubCommand, AppSubCommandNotWorking],
+@SubCommand({
+  name: 'default',
   description: 'Tells you what you need to hear',
 })
-export class AppCommand extends CommandRunner {
+export class AppDefaultSubCommand extends CommandRunner {
   constructor(private readonly appService: AppService) {
     super();
   }
